@@ -8,7 +8,11 @@ print(soup.select('#score_34612759'))
 # . for class
 # '#' for id
 
-print(soup.select('.score'))
+print(soup.select('.titleline')[0]) #learn css selectors
+
+
+
+
 
 
 
