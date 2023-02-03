@@ -8,22 +8,25 @@ soup = BeautifulSoup(res.text, 'html.parser')
 # '#' for id
 
 links = (soup.select('.titleline'))  # learn css selectors
-votes = (soup.select('.score'))
-print(votes[0])
+subtext = (soup.select('.subtext'))
 
 
 # print(votes[0].get('id')) #get attribute id and it prints value as score
 
 
-def create_custom_hacker_news(links, votes):
+def create_custom_hacker_news(links, subtext):
     h = []
-    for idx, item in enumerate(links): #enumerate gives index
+    for idx, item in enumerate(links):  # enumerate gives index
         title = links[idx].getText()
         link1 = links[idx].get('href', None)
-        points = int(votes[idx].getText().replace(' points', ''))
+        votes = (subtext[idx].select('.score'))
 
-        h.append({'title2': title, 'link2': link1})
-    return(h)
+        if len(votes):
 
-create_custom_hacker_news(links, votes)
+            points = int(votes[0].getText().replace(' points', ''))
 
+        h.append({'title2': title, 'link2': link1, 'points2': points})
+    return (h)
+
+
+print(create_custom_hacker_news(links, subtext))
