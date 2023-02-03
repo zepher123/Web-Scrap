@@ -2,14 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 import pprint
 res = requests.get('https://news.ycombinator.com/news')
+res2 = requests.get('https://news.ycombinator.com/news?p=2')
 soup = BeautifulSoup(res.text, 'html.parser')
-
+soup2 = BeautifulSoup(res2.text, 'html.parser')
 # . for class
 # '#' for id
 
 links = (soup.select('.titleline'))  # learn css selectors
 subtext = (soup.select('.subtext'))
-
+subtext2 = (soup.select('.subtext'))
+links2 = (soup2.select('.titleline'))
+megalinks = links + links2
+megasubtext = subtext + subtext2
 
 # print(votes[0].get('id')) #get attribute id and it prints value as score
 
@@ -31,7 +35,7 @@ def create_custom_hacker_news(links, subtext):
     return sortbyvotes(h)
 
 
-pprint.pprint(create_custom_hacker_news(links, subtext))
+pprint.pprint(create_custom_hacker_news(megalinks, megasubtext))
 
 
 def sortbyvotes(hlist):
