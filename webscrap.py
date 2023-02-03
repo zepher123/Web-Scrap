@@ -9,7 +9,7 @@ soup = BeautifulSoup(res.text, 'html.parser')
 
 links = (soup.select('.titleline'))  # learn css selectors
 votes = (soup.select('.score'))
-
+print(votes[0])
 
 
 # print(votes[0].get('id')) #get attribute id and it prints value as score
@@ -20,8 +20,8 @@ def create_custom_hacker_news(links, votes):
     for idx, item in enumerate(links): #enumerate gives index
         title = links[idx].getText()
         link1 = links[idx].get('href', None)
-        # points = int(votes[idx].getText().replace(' points', ''))
-        print(votes[29])
+        points = int(votes[idx].getText().replace(' points', ''))
+
         h.append({'title2': title, 'link2': link1})
     return(h)
 
