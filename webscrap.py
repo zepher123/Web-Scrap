@@ -28,7 +28,12 @@ def create_custom_hacker_news(links, subtext):
 
 
                 h.append({'title2': title, 'link2': link1, 'points2': points})
-    return (h)
+    return sortbyvotes(h)
 
 
 pprint.pprint(create_custom_hacker_news(links, subtext))
+
+
+def sortbyvotes(hlist):
+    return sorted(hlist, key = lambda k:k['points2'], reverse= True)
+
