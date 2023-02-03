@@ -19,9 +19,11 @@ def create_custom_hacker_news(links, votes):
     h = []
     for idx, item in enumerate(links): #enumerate gives index
         title = links[idx].getText()
-        link = links[idx].get('href')
-        h.append(link)
+        link1 = links[idx].get('href', None)
+        points = int(votes[idx].getText().replace(' points', ''))
+        print(idx)
+        h.append({'title2': title, 'link2': link1})
     return(h)
 
-print(create_custom_hacker_news(links, votes))
+create_custom_hacker_news(links, votes)
 
