@@ -24,8 +24,10 @@ def create_custom_hacker_news(links, subtext):
         if len(votes):
 
             points = int(votes[0].getText().replace(' points', ''))
+            if points > 99:
 
-        h.append({'title2': title, 'link2': link1, 'points2': points})
+
+                h.append({'title2': title, 'link2': link1, 'points2': points})
     return (h)
 
 
