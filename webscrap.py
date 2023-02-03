@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import pprint
 res = requests.get('https://news.ycombinator.com/news')
 soup = BeautifulSoup(res.text, 'html.parser')
 
@@ -29,4 +29,4 @@ def create_custom_hacker_news(links, subtext):
     return (h)
 
 
-print(create_custom_hacker_news(links, subtext))
+pprint.pprint(create_custom_hacker_news(links, subtext))
