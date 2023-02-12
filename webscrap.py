@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pprint
+
 res = requests.get('https://news.ycombinator.com/news')
 res2 = requests.get('https://news.ycombinator.com/news?p=2')
 soup = BeautifulSoup(res.text, 'html.parser')
@@ -15,8 +16,12 @@ links2 = (soup2.select('.titleline'))
 megalinks = links + links2
 megasubtext = subtext + subtext2
 
+
 # print(votes[0].get('id')) #get attribute id and it prints value as score
 
+
+def sort_by_votes(hlist):
+    return sorted(hlist, key=lambda k: k['points'], reverse=True)
 
 def create_custom_hacker_news(links, subtext):
     h = []
@@ -29,15 +34,12 @@ def create_custom_hacker_news(links, subtext):
 
             points = int(votes[0].getText().replace(' points', ''))
             if points > 99:
+                h.append({'title': title, 'link': link1, 'points': points})
+    return sort_by_votes(h)
 
-
-                h.append({'title2': title, 'link2': link1, 'points2': points})
-    return sortbyvotes(h)
 
 
 pprint.pprint(create_custom_hacker_news(megalinks, megasubtext))
 
 
-def sortbyvotes(hlist):
-    return sorted(hlist, key = lambda k:k['points2'], reverse= True)
 
